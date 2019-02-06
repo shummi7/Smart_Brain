@@ -1,0 +1,17 @@
+.rankno span{
+    border:3px solid black;
+    background: #F9DA16;
+    color:black;
+    border-radius:50px;
+    padding:15px;
+}
+
+.rankno span:hover{
+    /* background:linear-gradient(90deg,black, rgb(97, 97, 93)); */
+    background: black;
+    border:3px solid #F9DA16;
+    color:#F9DA16;
+     
+
+}
+

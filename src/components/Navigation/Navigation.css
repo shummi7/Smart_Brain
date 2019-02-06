@@ -1,0 +1,13 @@
+.sig{
+    background:rgb(106, 13, 160);
+    border-radius:20px;
+    margin:5px;
+    margin-top:15px;
+    border:2px solid black;
+    /* width:10%; */
+}
+
+.sig:hover{
+    background:white;
+    color:rgb(106, 13, 160);
+}
