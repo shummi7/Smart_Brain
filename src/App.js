@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 
 import Title from './components/Title/Title';
 import Navigation from './components/Navigation/Navigation';
@@ -24,10 +23,6 @@ const particleOption={
         }
     }
 }
-const app = new Clarifai.App({
-  apiKey: '8363d37ebc4c4e5f9dd3a0ab5595eb89'
- });
-
 
 class App extends Component {
   constructor(){
@@ -36,7 +31,7 @@ class App extends Component {
       input:'',
       imageUrl:'',
       box:{},
-      route:'signin',
+      route:'signinPage',
       signedIn:false,
       user:{
         id      : '',
@@ -86,12 +81,19 @@ class App extends Component {
     }
 
   onButtonClick=()=>{
-    this.setState({imageUrl:this.state.input})
-       app.models
-       .predict(Clarifai.FACE_DETECT_MODEL,this.state.input)
+    this.setState({imageUrl:this.state.input});
+        fetch(' https://still-plateau-49196.herokuapp.com/imageurl',{
+        method:'post',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+            input:this.state.input
+        })
+        })
+        .then(response => response.json())
        .then(response=>{
+         
           if(response){
-            fetch('http://localhost:3000/image',{
+            fetch(' https://still-plateau-49196.herokuapp.com/image',{
                 method:'put',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
@@ -113,8 +115,9 @@ class App extends Component {
     if(option==='home'){
       this.setState({signedIn:true});
     }
-    else if(option==='signin'){
+    else if(option==='signinPage'){
       this.setState({signedIn:false});
+      this.setState({imageUrl:''});
     }
       this.setState({route:option});    
   }
@@ -138,7 +141,7 @@ class App extends Component {
           </div>
         :
           (
-            this.state.route === 'signin'
+            this.state.route === 'signinPage'
             ?
             <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             :
