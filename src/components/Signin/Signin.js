@@ -65,6 +65,7 @@ render(){
             </form>
             </main>  
             </article>  
+            <p className='white'>Email: guest@gmail.com  <hr></hr><span>Password: guest</span></p>
         </div>
     )
     }
