@@ -71,7 +71,6 @@ class App extends Component {
   }
 
   displayFaceBox=(facebox)=>{
-    console.log(this.state);
     this.setState({box:facebox});
   }
 
@@ -82,7 +81,7 @@ class App extends Component {
 
   onButtonClick=()=>{
     this.setState({imageUrl:this.state.input});
-        fetch(' https://still-plateau-49196.herokuapp.com/imageurl',{
+        fetch('https://inquisitive-waistcoat-bee.cyclic.app/imageurl',{
         method:'post',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({
@@ -91,9 +90,9 @@ class App extends Component {
         })
         .then(response => response.json())
        .then(response=>{
-         
+        console.log('response',response);
           if(response){
-            fetch(' https://still-plateau-49196.herokuapp.com/image',{
+            fetch('https://inquisitive-waistcoat-bee.cyclic.app/image',{
                 method:'put',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
